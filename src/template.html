@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link type="text/css" href="./style.css" />
+    <!-- <script src="main.js" defer type="text/javascript"></script> -->
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="outer-background">
+      <div class="inner-background">
+        <nav class="page-navigation">
+          <ul class="page-navigation__list" data-is-main-navigation>
+            <li class="page-navigation__list-item page-navigation__list-item--selected">
+              <button
+                class="page-navigation__button page-navigation__button--selected"
+                name="today"
+              >
+                Today
+              </button>
+            </li>
+            <li class="page-navigation__list-item">
+              <button class="page-navigation__button" name="upcoming">Upcoming</button>
+            </li>
+          </ul>
+          <div class="page-navigation__separator"></div>
+          <ul class="page-navigation__list" data-is-projects-list>
+            <li
+              class="page-navigation__list-item page-navigation__list-item--special"
+              name="add-project"
+            >
+              <button class="page-navigation__button page-navigation__button--special">+</button>
+            </li>
+            <li
+              class="page-navigation__list-item page-navigation__list-item--selected"
+              name="default"
+              data-is-project
+            >
+              <button class="page-navigation__button page-navigation__button--selected">
+                Default
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <div class="content-container">
+          <header class="page-header">
+            <h1 class="page-header__heading">Todo List</h1>
+          </header>
+          <main class="main-section">
+            <h2 class="main-section__heading">Project - Default</h2>
+            <div class="todo-list selected" data-project-todos="default">
+              <div class="todo" data-todo-id="0" data-todo-priority="3">
+                <div class="todo__main-todo">
+                  <button class="todo__expand-subtodos">
+                    <div class="todo__expand-subtodos-symbol">⮟</div>
+                  </button>
+                  <div class="todo__name">Shopping</div>
+                  <div class="todo__date">Today</div>
+                  <button class="todo__complete">✓</button>
+                  <button class="todo__delete">✕</button>
+                </div>
+                <div class="todo__subtodos hidden">
+                  <div class="todo" data-todo-id="0" data-todo-priority="3">
+                    <div class="todo__main-todo">
+                      <button class="todo__expand-subtodos">
+                        <div class="todo__expand-subtodos-symbol">⮟</div>
+                      </button>
+                      <div class="todo__name">Shopping</div>
+                      <div class="todo__date">Today</div>
+                      <button class="todo__complete">✓</button>
+                      <button class="todo__delete">✕</button>
+                    </div>
+                    <div class="todo__subtodos hidden">
+                      <div class="todo" data-todo-id="0" data-todo-priority="3">
+                        <div class="todo__main-todo">
+                          <button class="todo__expand-subtodos">
+                            <div class="todo__expand-subtodos-symbol">⮟</div>
+                          </button>
+                          <div class="todo__name">Shopping</div>
+                          <div class="todo__date">Today</div>
+                          <button class="todo__complete">✓</button>
+                          <button class="todo__delete">✕</button>
+                        </div>
+                        <div class="todo__subtodos hidden"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+        <form class="add-project hidden">
+          <div class="add-project__inner-background">
+            <label class="add-project__label" for="project-name">Project Name</label>
+            <input
+              class="add-project__input"
+              type="text"
+              name="project-name"
+              id="project-name"
+              required
+            />
+            <div class="add-project__buttons">
+              <button class="add-project__cancel-button" type="reset">Cancel</button>
+              <button class="add-project__submit-button" type="submit">Add Project</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
