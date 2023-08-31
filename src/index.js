@@ -3,6 +3,7 @@ import './style.css';
 import * as Todo from './Todo';
 import * as Project from './Project';
 import * as DOM from './DOM';
+import './favicon.png';
 
 const elements = {};
 // const DOM = {};
@@ -22,32 +23,65 @@ function queryElements() {
   );
 }
 
+function addProjectElement(projectName) {
+  const EProject = document.createElement('li');
+  EProject.classList.add('page-navigation__list-item');
+  EProject.setAttribute('name', projectName);
+}
+
 function loadData() {
-  const tempProjectsList = JSON.parse(localStorage.getItem('projectsList'));
-  if (tempProjectsList !== null) {
-    projectsList = tempProjectsList;
+  let data = JSON.parse(localStorage.getItem('data'));
+  if (data !== null) {
+    console.log('A');
   } else {
-    projectsList = [
-      {
-        id: uuid(),
-        name: 'Default',
-        selected: true,
-      },
-      {
-        id: uuid(),
-        name: 'A',
-        selected: false,
-      },
-    ];
+    data = {
+      projectsList: [
+        {
+          id: uuid(),
+          name: 'Default',
+          selected: true,
+          todosList: [],
+        },
+      ],
+      todosList: [
+        {
+          id: uuid(),
+          name: 'Todo 1',
+          priority: 3,
+          dueDate: '2023-08-30',
+          subTodosList: [],
+        },
+        {
+          id: uuid(),
+          name: 'Todo 2',
+          priority: 3,
+          dueDate: '2023-08-30',
+          subTodosList: [],
+        },
+        {
+          id: uuid(),
+          name: 'Todo 3',
+          priority: 2,
+          dueDate: '2023-08-30',
+          subTodosList: [],
+        },
+      ],
+    };
+    data.projectsList.push(data.todosList[0].id);
+    data.projectsList.push(data.todosList[1].id);
+    data.projectsList.push(data.todosList[2].id);
 
-    projectsList.forEach(project => {
-      project.element = addProjectElement(project.name);
-    });
-
-    ESelectedProject = projectsList.find(project => project.selected).element;
-    ESelectedProject.classList.add('page-navigation__list-item--selected');
-    ESelectedProject.children[0].classList.add('page-navigation__button--selected');
+    data.todosList[0].subTodosList.push(data.todosList[1]);
+    data.todosList[1].subTodosList.push(data.todosList[2]);
   }
+
+  data.projectsList.forEach(project => {
+    project.element = addProjectElement(project.name);
+  });
+
+  ESelectedProject = data.projectsList.find(project => project.selected).element;
+  ESelectedProject.classList.add('page-navigation__list-item--selected');
+  ESelectedProject.children[0].classList.add('page-navigation__button--selected');
 }
 
 function saveData() {
@@ -126,3 +160,11 @@ function init() {
 }
 
 init();
+
+// query elements into elements object
+// check if there's saved data in local storage
+//   if yes, load that into memory then create and insert elements
+//   if no, initiate basic data into memory, create and insert elements, and save data into local storage
+// setup events
+// reset forms
+//
